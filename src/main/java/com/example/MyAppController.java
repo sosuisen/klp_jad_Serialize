@@ -3,7 +3,7 @@ package com.example;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -26,10 +26,17 @@ public class MyAppController {
 	private Button loadBtn;
 
 	public void initialize() {
+		var memo = new Memo();
+
+		// var gson = new Gson();
+		var gson = new GsonBuilder().setPrettyPrinting().create();
+
 		saveBtn.setOnAction(e -> {
 			var saveData = inputField.getText();
+			memo.setText(saveData);
+			var json = gson.toJson(memo);
 			try {
-				Files.writeString(Path.of(path), saveData);
+				Files.writeString(Path.of(path), json);
 			} catch (Exception err) {
 				err.printStackTrace();
 			}
@@ -40,7 +47,10 @@ public class MyAppController {
 			String loadData = "";
 			try {
 				loadData = Files.readString(Path.of(path));
-				txtLabel.setText(loadData);
+
+				Memo memoObj = gson.fromJson(loadData, Memo.class);
+				
+				txtLabel.setText(memoObj.getText());
 			} catch (Exception err) {
 				err.printStackTrace();
 			}

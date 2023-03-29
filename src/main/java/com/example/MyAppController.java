@@ -2,6 +2,7 @@ package com.example;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
 
 import com.google.gson.GsonBuilder;
 
@@ -34,6 +35,7 @@ public class MyAppController {
 		saveBtn.setOnAction(e -> {
 			var saveData = inputField.getText();
 			memo.setText(saveData);
+			memo.setDate(LocalDate.now().toString());
 			var json = gson.toJson(memo);
 			try {
 				Files.writeString(Path.of(path), json);
@@ -50,7 +52,7 @@ public class MyAppController {
 
 				Memo memoObj = gson.fromJson(loadData, Memo.class);
 				
-				txtLabel.setText(memoObj.getText());
+				txtLabel.setText(memoObj.getText() + "(" + memoObj.getDate() + ")");
 			} catch (Exception err) {
 				err.printStackTrace();
 			}

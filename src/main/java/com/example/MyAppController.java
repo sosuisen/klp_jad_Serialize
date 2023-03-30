@@ -3,15 +3,13 @@ package com.example;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import com.google.gson.Gson;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class MyAppController {
-	private String path = "data.txt";
+	private String path = "data.json";
 
 	@FXML
 	private TextField inputField;

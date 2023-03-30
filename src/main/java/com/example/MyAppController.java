@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class MyAppController {
-	private String path = "data.json";
+	private String path = "data.txt";
 
 	@FXML
 	private TextField inputField;

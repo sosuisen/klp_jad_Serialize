@@ -52,7 +52,8 @@ public class MyAppController {
 
 				Memo memoObj = gson.fromJson(loadData, Memo.class);
 				
-				txtLabel.setText(memoObj.getText() + "(" + memoObj.getDate() + ")");
+				// txtLabel.setText(memoObj.getText() + "(" + memoObj.getDate() + ")");
+				txtLabel.setText("%s(%s)".formatted(memoObj.getText(), memoObj.getDate()));
 			} catch (Exception err) {
 				err.printStackTrace();
 			}
